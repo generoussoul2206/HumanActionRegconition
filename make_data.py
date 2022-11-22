@@ -12,7 +12,7 @@ pose = mpPose.Pose()
 mpDraw = mp.solutions.drawing_utils
 
 lm_list = []
-label = "HEADSWING"
+label = "RIGHTHANDSWING"
 no_of_frames = 600
 
 

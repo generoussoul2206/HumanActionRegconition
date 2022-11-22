@@ -6,8 +6,8 @@ from sklearn.model_selection import train_test_split
 
 # Đọc dữ liệu
 bodyswing_df = pd.read_csv("BODYSWING.txt")
-handswing_df = pd.read_csv("HANDSWING.txt")
-headswing_df = pd.read_csv("HEADSWING.txt")
+lefthandswing_df = pd.read_csv("LEFTHANDSWING.txt")
+rightheadswing_df = pd.read_csv("RIGHTHANDSWING.txt")
 X = []
 Y = []
 no_of_timesteps = 10
@@ -20,17 +20,17 @@ for i in range(no_of_timesteps, n_sample):
     Y.append([1,0,0]) # bodyswing : 0
 # --
 
-dataset = handswing_df.iloc[:, 1:].values
+dataset = lefthandswing_df.iloc[:, 1:].values
 n_sample = len(dataset)
 for i in range(no_of_timesteps, n_sample):
     X.append(dataset[i - no_of_timesteps:i, :])
-    Y.append([0,1,0]) # handswing : 1
+    Y.append([0,1,0]) # lefthandswing : 1
 
-dataset = headswing_df.iloc[:, 1:].values
+dataset = rightheadswing_df.iloc[:, 1:].values
 n_sample = len(dataset)
 for i in range(no_of_timesteps, n_sample):
     X.append(dataset[i - no_of_timesteps:i, :])
-    Y.append([0,0,1]) # handswing : 1
+    Y.append([0,0,1]) # righthandswing : 2
 
 X,Y = np.array(X), np.array(Y)
 
@@ -40,7 +40,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 
 model = Sequential()
 model.add(LSTM(units=50,return_sequences= True ,input_shape=(X.shape[1], X.shape[2])))
-model.add(Dropout(0.2))
+model.add(Dropout(0.2)) # Loại bỏ ngẫu nhiên 1 số neural trong mạng
 model.add(LSTM(units=50,return_sequences= True ))
 model.add(Dropout(0.2))
 model.add(LSTM(units=50,return_sequences= True ))

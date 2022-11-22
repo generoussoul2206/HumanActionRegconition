@@ -67,9 +67,9 @@ def detect(model, lm_list):
     if index_of_label == 0:
         label = "BODYSWING"
     if index_of_label == 1:
-        label = "HANDSWING"
+        label = "LEFTHANDSWING"
     if index_of_label == 2:
-        label = "HEADSWING"
+        label = "RIGHTHANDSWING"
     return label
 label = "...."
 i=0
