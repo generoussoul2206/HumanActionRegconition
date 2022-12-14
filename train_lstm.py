@@ -34,7 +34,7 @@ for i in range(no_of_timesteps, n_sample):
 
 X,Y = np.array(X), np.array(Y)
 
-print(X.shape, Y.shape)
+print(X.shape, Y.shape) # (1773, 10, 132) (1773, 3)
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 
@@ -48,7 +48,7 @@ model.add(Dropout(0.2))
 model.add(LSTM(units=50))
 model.add(Dropout(0.2))
 model.add(Dense(units=3, activation='softmax'))
-
+model.summary()
 model.compile(optimizer="adam", metrics=['accuracy'], loss="binary_crossentropy")
 
 model.fit(X_train, Y_train, epochs=16, batch_size=32, validation_data=(X_test, Y_test))

@@ -29,7 +29,8 @@ def make_landmark_timestep(results):
 
 def draw_landmark_on_image(mpDraw, results, img):
     #Vẽ các đường nối
-    mpDraw.draw_landmarks(img, results.pose_landmarks, mpPose.POSE_CONNECTIONS)
+    mpDraw.draw_landmarks(img, results.pose_landmarks, mpPose.POSE_CONNECTIONS,connection_drawing_spec= mpDraw.DrawingSpec(color=(21,21,240),thickness=2))
+
     #vẽ các nút
     for id, lm in enumerate(results.pose_landmarks.landmark):
         h, w, c = img.shape
